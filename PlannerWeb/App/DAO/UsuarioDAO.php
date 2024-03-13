@@ -24,8 +24,11 @@ class UsuarioDAO
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        $sql = "SELECT * FROM usuario WHERE idUsuario = '$idUsuario'";
-        return $conex->conn->query($sql);
+        $sql = "SELECT * FROM usuario WHERE idUsuario = :idUsuario";
+        $stmt = $conex->conn->prepare($sql);
+        $stmt->bindValue(':idUsuario', $idUsuario);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     //     public function autenticarUsuario($idUsuario)

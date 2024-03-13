@@ -11,10 +11,10 @@ class UsuarioController
         $usuario->cadastrarUsuario($usuario);
     }
 
-    public static function autenticarUsuario($idUsuario)
+    public static function autenticarUsuario($nomeUsuario, $senha)
     {
         include_once '../model/Usuario.php';
         $model = new Usuario(null, null, null);
-        return $model->autenticarUsuario($idUsuario);
+        return $model->autenticarUsuario($nomeUsuario, $senha);
     }
 }
