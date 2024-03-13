@@ -1,0 +1,33 @@
+document
+  .getElementById("adicionarCompromisso")
+  .addEventListener("click", function () {
+    // Captura os valores dos campos de entrada
+    let data = document.getElementById("data").value;
+    let hora = document.getElementById("hora").value;
+    let descricao = document.getElementById("descricao").value;
+
+    // Cria uma nova linha na tabela com os valores capturados
+    let table = document.getElementById("tabelaCompromissos");
+    if (table.rows.length >= 7) {
+      alert("voce atingiu o limite de compromissos gratuitos");
+      return;
+    }
+    let newRow = table.insertRow(-1); // Insere a linha no final da tabela
+
+    let cell1 = newRow.insertCell(0);
+    let cell2 = newRow.insertCell(1);
+    let cell3 = newRow.insertCell(2);
+
+    // Define o conteúdo das células com os valores capturados
+    cell1.innerHTML = data;
+    cell2.innerHTML = hora;
+    cell3.innerHTML = descricao;
+  });
+
+document.getElementById("limparTabela").addEventListener("click", function () {
+  let table = document.getElementById("tabelaCompromissos");
+  let rowCount = table.rows.length;
+  for (let i = 1; i < rowCount; i++) {
+    table.deleteRow(1);
+  }
+});

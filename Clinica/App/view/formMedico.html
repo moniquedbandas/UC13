@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de cadastro</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <div class="form2">
+        <form action="../controller/dadosMedico.php" method="post">
+            <label for="nome">Nome completo:
+                <br>
+                <input type="text" name="nome">
+            </label><br><br>
+            <label for="endereco">Endereço:
+                <br>
+                <input type="text" name="endereco">
+            </label><br><br>
+            <label for="tel">Telefone:
+                <br>
+                <input type="text" name="tel">
+            </label><br><br>
+            <label for="idade">Idade:
+                <br>
+                <input type="number" name="idade">
+            </label><br><br>
+            <label for="crm">CRM:
+                <br>
+                <input type="text" name="crm">
+            </label><br><br>
+            <label for="espec">Especialidade:
+                <br>
+                <input type="text" name="espec">
+            </label><br><br>
+            <label for="plano">Plano:
+                <br>
+                <input type="text" name="plano">
+            </label><br><br>
+            <input type="submit" id="btnEnviar" value="Enviar">
+        </form>
+    </div>
+</body>
+
+</html>

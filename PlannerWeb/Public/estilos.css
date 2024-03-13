@@ -1,0 +1,106 @@
+body {
+  background-color: #413e4a;
+  font-family: "Nunito", sans-serif;
+}
+
+.container {
+  background-color: #73626e;
+  margin: 100px 400px;
+  padding: 30px;
+  border-radius: 20px;
+  height: 40rem;
+  opacity: 0.6;
+}
+
+.telaLogin {
+  border: 5px solid;
+  border-radius: 20px;
+  border-color: #f0b49e;
+  margin: 3.125rem 21.875rem;
+  width: 12.5rem;
+  height: 25rem;
+  padding: 3.125rem;
+}
+.areaCadastro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 5px solid;
+  border-radius: 20px;
+  border-color: #f0b49e;
+  margin: 1.5rem 16rem;
+  width: 25rem;
+  height: 25rem;
+  padding: 3.125rem;
+}
+.boas-vindas,
+.tituloContainer {
+  color: #f7e4be;
+  text-align: center;
+  padding: 1.25rem;
+}
+.labels {
+  position: relative;
+}
+.labels label {
+  display: inline-block; /* Garante que cada label e input fiquem em uma linha */
+  width: 50px;
+  text-align: right;
+  margin-right: 25px;
+}
+.areaBotoes {
+  text-align: center;
+  padding: 2.5rem;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 200px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+input:focus {
+  border: 1px solid #413e4a;
+  box-shadow: 0 0 5px#413e4a;
+}
+input[type="submit"] {
+  border-radius: 5px;
+  width: 100px;
+  height: 25px;
+  border: none;
+  cursor: pointer;
+  background-color: #f0b49e;
+  opacity: 0.8;
+}
+
+label[for="username"],
+label[for="password"],
+p {
+  color: #f7e4be;
+}
+
+/* 
+.color1 { #413e4a }
+.color2 { #73626e }
+.color3 { #b38184 }
+.color4 { #f0b49e }
+.color5 { #f7e4be } 
+*/
