@@ -4,41 +4,43 @@ include_once 'Conexao.php';
 class UsuarioDAO
 {
 
-    public function cadastrarUsuario(Usuario $usuario)
+    public function cadastrarUsuario($nomeUsuario, $senha)
     {
-        $conex = new Conexao();
-        $conex->fazConexao();
-        $sql = "INSERT INTO usuario (nomeUsuario, senha) VALUES (:nomeUsuario, :senha)";
-        $stmt = $conex->conn->prepare($sql);
-        $stmt->bindValue(':nomeUsuario', $usuario->getNomeUsuario());
-        $stmt->bindValue(':senha', $usuario->getSenha());
-        $res = $stmt->execute();
-        if ($res) {
-            echo "<script>alert('Cadastro feito com sucesso!');</script>";
-        } else {
-            echo "<script>alert('Erro ao cadastrar usuário');</script>";
+        try {
+            $conex = new Conexao();
+            $conex->fazConexao();
+            $sql = "INSERT INTO usuario (nomeUsuario, senha) VALUES (:nomeUsuario, :senha)";
+            $stmt = $conex->conn->prepare($sql);
+            $stmt->bindValue(':nomeUsuario', $nomeUsuario);
+            $stmt->bindValue(':senha', $senha);
+            $res = $stmt->execute();
+            if ($res) {
+                echo "<script>alert('Cadastro feito com sucesso!');</script>";
+                return true;
+            } else {
+                // echo "<script>alert('Erro ao cadastrar usuário');</script>";
+                return false;
+            }
+        } catch (PDOException $e) {
+            // echo "<script>alert('Erro ao cadastrar usuário');</script>";
+            return false;
         }
     }
 
-    public function autenticarUsuario($idUsuario)
+    public function autenticarUsuario($nomeUsuario, $senha)
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        $sql = "SELECT * FROM usuario WHERE idUsuario = :idUsuario";
+        $sql = "SELECT * FROM usuario WHERE nomeUsuario = :nomeUsuario AND senha = :senha";
         $stmt = $conex->conn->prepare($sql);
-        $stmt->bindValue(':idUsuario', $idUsuario);
+        $stmt->bindValue(':nomeUsuario', $nomeUsuario);
+        $stmt->bindValue(':senha', $senha);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($usuario) {
+            return $usuario;
+        } else {
+            return false;
+        }
     }
-
-    //     public function autenticarUsuario($idUsuario)
-    // {
-    //     $conex = new Conexao();
-    //     $conex->fazConexao();
-    //     $sql = "SELECT * FROM usuario WHERE idUsuario = :idUsuario";
-    //     $stmt = $conex->conn->prepare($sql);
-    //     $stmt->bindValue(':idUsuario', $idUsuario);
-    //     $stmt->execute();
-    //     return $stmt->fetch(PDO::FETCH_ASSOC);
-    // }
 }

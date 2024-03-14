@@ -14,11 +14,6 @@
 
 <body>
     <?php
-    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //     criar();
-    // } else {
-    //     echo "Não achou";
-    // }
     echo "OPCAO: " . $_REQUEST['op'];
     switch ($_REQUEST['op']) {
         case "criar":
@@ -28,27 +23,43 @@
             autenticar();
             break;
         default:
-            echo "Erro OI OI OI.";
+            echo "Opção inválida.";
     }
-
 
     function criar()
     {
-        $nomeUsuario = $_POST["username"];
-        $senha = $_POST["password"];
-        include './UsuarioController.php';
-        $contr = new UsuarioController();
-        $contr->cadastrarUsuario($nomeUsuario, $senha);
+        if (isset($_POST["username"]) && isset($_POST["password"])) {
+            $nomeUsuario = $_POST["username"];
+            $senha = $_POST["password"];
+            include './UsuarioController.php';
+            $contr = new UsuarioController();
+            $contr->cadastrarUsuario($nomeUsuario, $senha);
+            header("Location: ../view/PaginaAtividades.php");
+            exit;
+        } else {
+            header("Location: ../view/PaginaCadUsuario.php");
+            exit;
+        }
     }
 
     function autenticar()
     {
-        $nomeUsuario = $_POST["username"];
-        $senha = $_POST["password"];
-        include './UsuarioController.php';
-        $contr = new UsuarioController();
-        $contr->autenticarUsuario($nomeUsuario, $senha);
+        if (isset($_POST["username"]) && isset($_POST["password"])) {
+            $nomeUsuario = $_POST["username"];
+            $senha = $_POST["password"];
+            include './UsuarioController.php';
+            $contr = new UsuarioController();
+            $contr->autenticarUsuario($nomeUsuario, $senha);
+            header("Location: ../view/PaginaAtividades.php");
+            exit;
+        } else {
+            // Se os campos username e password não foram enviados, redirecione de volta para o formulário de login
+            header("Location: ../../index.html");
+            exit;
+        }
     }
+
+
     ?>
 </body>
 

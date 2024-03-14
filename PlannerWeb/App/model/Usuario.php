@@ -1,5 +1,5 @@
 <?php
-
+include_once "../DAO/UsuarioDAO.php";
 class Usuario
 
 {
@@ -43,17 +43,18 @@ class Usuario
         $this->senha = $value;
     }
 
-    public function cadastrarUsuario(Usuario $usuario)
+    public function cadastrarUsuario($nomeUsuario, $senha)
     {
-        include_once "../DAO/UsuarioDAO.php";
-        $usuario = new UsuarioDAO();
-        $usuario->cadastrarUsuario($this);
+        $usuarioDAO = new UsuarioDAO();
+        return $usuarioDAO->cadastrarUsuario($nomeUsuario, $senha);
     }
 
-    public function autenticarUsuario($idUsuario)
+    public function autenticarUsuario($nomeUsuario, $senha)
     {
-        include_once "../DAO/UsuarioDAO.php";
-        $model = new UsuarioDAO();
-        return $model->autenticarUsuario($idUsuario);
+        $usuarioDAO = new UsuarioDAO();
+        echo "Chamando autenticarUsuario no modelo<br>";
+        var_dump($nomeUsuario, $senha);
+        $autenticado = $usuarioDAO->autenticarUsuario($nomeUsuario, $senha);
+        return $autenticado;
     }
 }

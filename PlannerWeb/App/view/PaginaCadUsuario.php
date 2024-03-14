@@ -34,3 +34,21 @@
 </body>
 
 </html>
+
+
+<!-- // function criar()
+// {
+// $nomeUsuario = $_POST["username"];
+// $senha = $_POST["password"];
+// include './UsuarioController.php';
+// $contr = new UsuarioController();
+// $contr->cadastrarUsuario($nomeUsuario, $senha);
+
+// // $nomeUsuario = $_POST["username"];
+// // $senha = $_POST["password"];
+// // include './UsuarioController.php';
+// // $contr = new UsuarioController();
+// // $contr->cadastrarUsuario($nomeUsuario, $senha);
+// // header("Location: ../view/PaginaAtividades.php");
+// // exit;
+// } -->
