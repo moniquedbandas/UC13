@@ -43,11 +43,6 @@ class Usuario
         $this->senha = $value;
     }
 
-    // public function cadastrarUsuario($nomeUsuario, $senha)
-    // {
-    //     $usuarioDAO = new UsuarioDAO();
-    //     return $usuarioDAO->cadastrarUsuario($nomeUsuario, $senha);
-    // }
     public function cadastrarUsuario(Usuario $usuario)
     {
         $usuario = new UsuarioDAO();
