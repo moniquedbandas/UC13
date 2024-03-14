@@ -19,13 +19,13 @@
             <form action="../../App/controller/ProcessarUsuario.php" method="post">
                 <label for="username">Usuário: </label>
                 <br>
-                <input type="text" id="username" name="username" autocomplete="off" placeholder="Informe um nome de usuário"><br><br>
+                <input type="text" id="username" name="cadUsername" autocomplete="off" placeholder="Informe um nome de usuário"><br><br>
                 <label for="password">Senha: </label>
                 <br>
-                <input type="password" id="password" name="password" autocomplete="off" placeholder="Senha de 5 a 10 caracteres">
+                <input type="password" id="password" name="cadPassword" autocomplete="off" placeholder="Senha de 5 a 10 caracteres">
                 <br>
                 <div class="areaBotoes">
-                    <input type="hidden" name="op" value="criar">
+                    <input type="hidden" name="op" value="criarUsuario">
                     <input type="submit" name="create" value="CREATE">
                 </div>
             </form>

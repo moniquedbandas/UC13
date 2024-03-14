@@ -4,26 +4,19 @@ include_once 'Conexao.php';
 class UsuarioDAO
 {
 
-    public function cadastrarUsuario($nomeUsuario, $senha)
+    public function cadastrarUsuario(Usuario $usuario)
     {
-        try {
-            $conex = new Conexao();
-            $conex->fazConexao();
-            $sql = "INSERT INTO usuario (nomeUsuario, senha) VALUES (:nomeUsuario, :senha)";
-            $stmt = $conex->conn->prepare($sql);
-            $stmt->bindValue(':nomeUsuario', $nomeUsuario);
-            $stmt->bindValue(':senha', $senha);
-            $res = $stmt->execute();
-            if ($res) {
-                echo "<script>alert('Cadastro feito com sucesso!');</script>";
-                return true;
-            } else {
-                // echo "<script>alert('Erro ao cadastrar usuário');</script>";
-                return false;
-            }
-        } catch (PDOException $e) {
-            // echo "<script>alert('Erro ao cadastrar usuário');</script>";
-            return false;
+        $conex = new Conexao();
+        $conex->fazConexao();
+        $sql = "INSERT INTO usuario (nomeUsuario, senha) VALUES (:nomeUsuario, :senha)";
+        $stmt = $conex->conn->prepare($sql);
+        $stmt->bindValue(':nomeUsuario', $usuario->getNomeUsuario());
+        $stmt->bindValue(':senha', $usuario->getSenha());
+        $res = $stmt->execute();
+        if ($res) {
+            echo "<script>alert('Cadastro feito com sucesso!');</script>";
+        } else {
+            echo "<script>alert('Erro ao cadastrar usuário');</script>";
         }
     }
 
@@ -31,14 +24,13 @@ class UsuarioDAO
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        $sql = "SELECT * FROM usuario WHERE nomeUsuario = :nomeUsuario AND senha = :senha";
+        $sql = "SELECT * FROM usuario WHERE nomeUsuario = :nomeUsuario";
         $stmt = $conex->conn->prepare($sql);
         $stmt->bindValue(':nomeUsuario', $nomeUsuario);
-        $stmt->bindValue(':senha', $senha);
         $stmt->execute();
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($usuario) {
-            return $usuario;
+        if ($usuario && $senha == $usuario['senha']) {
+            return true;
         } else {
             return false;
         }

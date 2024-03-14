@@ -31,3 +31,21 @@ document.getElementById("limparTabela").addEventListener("click", function () {
     table.deleteRow(1);
   }
 });
+
+function validarFormulario() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  if (document.activeElement.value == "SIGN IN") {
+    if (username == "" || password == "") {
+      alert("Preencha todos os campos");
+      return false;
+    }
+    document.getElementById("form").action =
+      "./App/controller/ProcessarUsuario.php?op=autenticar";
+  } else if (document.activeElement.value == "SIGN UP") {
+    document.getElementById("form").action =
+      "./App/controller/ProcessarUsuario.php?op=criarTela";
+  }
+  return true;
+}

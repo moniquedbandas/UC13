@@ -16,7 +16,8 @@
     <div class="container">
         <div class="telaLogin">
             <h3 class="boas-vindas">Welcome</h3>
-            <form action="./App/view/Login.php" method="post">
+            <form id="form" action="./App/controller/ProcessarUsuario.php" method="post"
+                onsubmit="return validarFormulario()">
                 <label for="username">Usuário: </label>
                 <br>
                 <input type="text" id="username" name="username" autocomplete="off"
@@ -26,15 +27,23 @@
                 <input type="password" id="password" name="password" autocomplete="off"
                     placeholder="Senha de 5 a 10 caracteres">
                 <br>
-                <div class="areaBotoes">
+
+                <!-- <div class="areaBotoes">
                     <input type="submit" name="signin" value="SIGN IN">
-                    <input type="hidden" name="op" value="autenticar">
                     <P>OU</P>
                     <input type="submit" name="signup" value="SIGN UP">
-                </div>
+                </div> -->
+                <input type="hidden" id="op" name="op">
+                <div class="areaBotoes">
+                    <input type="submit" name="signin" value="SIGN IN"
+                        onclick="document.getElementById('op').value='autenticar'">
+                    <P>OU</P>
+                    <input type="submit" name="signup" value="SIGN UP"
+                        onclick="document.getElementById('op').value='criarTela'">
             </form>
 
         </div>
+        <script src="Public/js/scripts.js"></script>
 </body>
 
 </html>

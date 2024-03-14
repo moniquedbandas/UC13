@@ -14,53 +14,58 @@
 
 <body>
     <?php
-    echo "OPCAO: " . $_REQUEST['op'];
     switch ($_REQUEST['op']) {
-        case "criar":
-            criar();
+        case "criarTela":
+            criarTela();
+            break;
+        case "criarUsuario":
+            criarUsuario();
             break;
         case "autenticar":
             autenticar();
             break;
         default:
-            echo "Opção inválida.";
+            echo "Erro no processamento das requisições.";
+    }
+    function criarTela()
+    {
+        echo "<script>location.href='../view/PaginaCadUsuario.php';</script>";
     }
 
-    function criar()
+    function criarUsuario()
     {
-        if (isset($_POST["username"]) && isset($_POST["password"])) {
-            $nomeUsuario = $_POST["username"];
-            $senha = $_POST["password"];
+        if (!empty($_POST["cadUsername"]) && !empty($_POST["cadPassword"])) {
+            $nomeUsuario = $_POST["cadUsername"];
+            $senha = $_POST["cadPassword"];
             include './UsuarioController.php';
             $contr = new UsuarioController();
             $contr->cadastrarUsuario($nomeUsuario, $senha);
-            header("Location: ../view/PaginaAtividades.php");
-            exit;
+            echo "<script>location.href='../view/PaginaAtividades.php';</script>";
         } else {
-            header("Location: ../view/PaginaCadUsuario.php");
-            exit;
+            echo "<script>alert('Preencha todos os campos');</script>";
+            echo "<script>location.href='../view/PaginaCadUsuario.php';</script>";
         }
     }
 
     function autenticar()
     {
-        if (isset($_POST["username"]) && isset($_POST["password"])) {
+        if (!empty($_POST["username"]) && !empty($_POST["password"])) {
             $nomeUsuario = $_POST["username"];
             $senha = $_POST["password"];
+            var_dump($nomeUsuario);
+            var_dump($senha);
             include './UsuarioController.php';
             $contr = new UsuarioController();
-            $contr->autenticarUsuario($nomeUsuario, $senha);
-            header("Location: ../view/PaginaAtividades.php");
-            exit;
-        } else {
-            // Se os campos username e password não foram enviados, redirecione de volta para o formulário de login
-            header("Location: ../../index.html");
-            exit;
+            if ($contr->autenticarUsuario($nomeUsuario, $senha)) {
+                echo "<script>location.href='../view/PaginaAtividades.php';</script>";
+            } else {
+                echo "<script>alert('Usuario ou senha incorretos');</script>";
+                echo "<script>location.href='/index.html';</script>";
+            }
         }
     }
-
-
     ?>
+
 </body>
 
 </html>
