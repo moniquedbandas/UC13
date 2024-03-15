@@ -83,4 +83,10 @@ class Compromisso
         $compromisso = new CompromissoDAO();
         $compromisso->cadastrarCompromisso($this);
     }
+    public function listarCompromisso()
+    {
+        include_once "../DAO/CompromissoDAO.php";
+        $dao = new CompromissoDAO();
+        return $dao->listarCompromisso();
+    }
 }
