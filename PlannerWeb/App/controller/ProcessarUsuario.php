@@ -60,7 +60,8 @@
                 echo "<script>location.href='../view/PaginaAtividades.php';</script>";
             } else {
                 echo "<script>alert('Usuario ou senha incorretos');</script>";
-                echo "<script>location.href='/index.html';</script>";
+                // echo "<script>location.href='/index.html';</script>";
+                echo "<script>location.href='../../index.html';</script>";
             }
         }
     }

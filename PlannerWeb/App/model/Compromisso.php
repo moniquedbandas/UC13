@@ -4,15 +4,15 @@ class Compromisso
 {
 
     protected $descricao;
-    protected $data;
+    protected $dataComp;
     protected $hora;
     protected $idCompromisso;
     protected $idUsuario;
     protected $idUsuarioLogado;
 
-    public function __construct($data, $hora, $descricao)
+    public function __construct($dataComp, $hora, $descricao)
     {
-        $this->data = $data;
+        $this->dataComp = $dataComp;
         $this->hora = $hora;
         $this->descricao = $descricao;
     }
@@ -27,14 +27,14 @@ class Compromisso
         $this->descricao = $value;
     }
 
-    public function getData()
+    public function getDataComp()
     {
-        return $this->data;
+        return $this->dataComp;
     }
 
-    public function setData($value)
+    public function setDataComp($value)
     {
-        $this->data = $value;
+        $this->dataComp = $value;
     }
 
     public function getHora()
@@ -88,5 +88,17 @@ class Compromisso
         include_once "../DAO/CompromissoDAO.php";
         $dao = new CompromissoDAO();
         return $dao->listarCompromisso();
+    }
+    public function alterarCompromisso(Compromisso $compromisso)
+    {
+        include_once "../DAO/CompromissoDAO.php";
+        $compromisso = new CompromissoDAO();
+        $compromisso->alterarCompromisso($this);
+    }
+    public function excluirCompromisso($idCompromisso)
+    {
+        include_once "../DAO/CompromissoDAO.php";
+        $compromisso = new CompromissoDAO();
+        $compromisso->alterarCompromisso($idCompromisso);
     }
 }
