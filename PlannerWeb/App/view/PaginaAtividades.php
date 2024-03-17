@@ -37,6 +37,10 @@
                     </tr>
                 </table>
             </div>
+            <div class="areaBotoes">
+                <input type="submit" name="salvar" value="SALVAR" id="salvarCompromisso">
+                <input type="submit" name="listar" value="LISTAR" id="listarCompromisso">
+            </div>
         </div>
     </div>
 
