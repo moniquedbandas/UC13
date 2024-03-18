@@ -14,32 +14,22 @@
 
 <body>
     <div class="container">
-        <h3 class="tituloContainer">Cadastro de compromissos</h3>
+        <h3 class="tituloContainer">Área de compromissos</h3>
         <div class="areaCadastro">
-            <div class="labels">
-                <label for="data">Data: </label>
-                <input type="date" name="data" id="data"><br><br>
-                <label for="hora">Hora: </label>
-                <input type="time" name="hora" id="hora"><br><br>
-                <label for="descricao">Descrição: </label>
-                <input type="text" name="descricao" id="descricao"><br>
-            </div>
-            <div class="areaBotoes">
-                <input type="submit" name="limpar" value="LIMPAR" id="limparTabela">
-                <input type="submit" name="add" value="ADICIONAR" id="adicionarCompromisso">
-            </div>
             <div class="areaTabela">
                 <table id="tabelaCompromissos">
                     <tr>
+                        <!-- <th>Código</th> -->
                         <th>Data</th>
                         <th>Hora</th>
                         <th>Descrição</th>
-                    </tr>
+                    </tr><br>
                 </table>
             </div>
             <div class="areaBotoes">
-                <input type="submit" name="salvar" value="SALVAR" id="salvarCompromisso">
-                <input type="submit" name="listar" value="LISTAR" id="listarCompromisso">
+                <input type="submit" name="listagem" value="LISTAGEM" id="listagem">
+                <input type="submit" name="editar" value="EDITAR" id="editar">
+                <input type="submit" name="deletar" value="DELETAR" id="deletar">
             </div>
         </div>
     </div>
