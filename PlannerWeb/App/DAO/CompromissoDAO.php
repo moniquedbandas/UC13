@@ -9,12 +9,12 @@ class CompromissoDAO
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        $sql = "INSERT INTO compromisso (dataComp, hora, descricao, idUsuario) VALUES (:dataComp, :hora, :descricao, :idUsuario)";
+        $sql = "INSERT INTO compromisso (dataComp, hora, descricao) VALUES (:dataComp, :hora, :descricao)";
         $stmt = $conex->conn->prepare($sql);
         $stmt->bindValue(':dataComp', $compromisso->getDataComp());
         $stmt->bindValue(':hora', $compromisso->getHora());
         $stmt->bindValue(':descricao', $compromisso->getDescricao());
-        $stmt->bindValue(':idUsuario', $compromisso->getIdUsuario());
+        // $stmt->bindValue(':idUsuario', $compromisso->getIdUsuario());
         $res = $stmt->execute();
         if ($res) {
             echo "<script>alert('Cadastro feito com sucesso');</script>";

@@ -15,33 +15,36 @@
 <body>
     <div class="container">
         <h3 class="tituloContainer">Cadastro de compromissos</h3>
-        <div class="areaCadastro">
-            <div class="labels">
-                <label for="data">Data: </label>
-                <input type="date" name="data" id="data"><br><br>
-                <label for="hora">Hora: </label>
-                <input type="time" name="hora" id="hora"><br><br>
-                <label for="descricao">Descrição: </label>
-                <input type="text" name="descricao" id="descricao"><br>
-            </div>
-            <div class="areaBotoes">
-                <input type="submit" name="limpar" value="LIMPAR" id="limparTabela">
-                <input type="submit" name="add" value="ADICIONAR" id="adicionarCompromisso">
-            </div>
-            <div class="areaTabela">
-                <table id="tabelaCompromissos">
-                    <tr>
-                        <th>Data</th>
-                        <th>Hora</th>
-                        <th>Descrição</th>
-                    </tr>
-                </table>
-            </div>
-            <div class="areaBotoes">
-                <input type="submit" name="salvar" value="SALVAR" id="salvarCompromisso">
-                <input type="submit" name="listar" value="LISTAR" id="listarCompromisso">
-            </div>
-        </div>
+        <form id="formComp" action="../../App/controller/ProcessarCompromisso.php" method="post">
+            <div class="areaCadastro">
+                <div class="labels">
+                    <label for="data">Data: </label>
+                    <input type="date" name="data" id="data"><br><br>
+                    <label for="hora">Hora: </label>
+                    <input type="time" name="hora" id="hora"><br><br>
+                    <label for="descricao">Descrição: </label>
+                    <input type="text" name="descricao" id="descricao"><br>
+                </div>
+                <div class="areaBotoes">
+                    <input type="button" name="limpar" value="LIMPAR" id="limparTabela">
+                    <input type="button" name="add" value="ADICIONAR" id="adicionarCompromisso">
+                </div>
+                <div class="areaTabela">
+                    <table id="tabelaCompromissos">
+                        <tr>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </table>
+                </div>
+                <input type="hidden" id="oc" name="oc">
+                <div class="areaBotoes2">
+                    <input type="submit" name="salvar" value="SALVAR" onclick="document.getElementById('oc').value='cadastrarCompromisso'">
+                    <input type="submit" name="listar" value="LISTAR" onclick="document.getElementById('oc').value='listarTela'">
+                </div>
+        </form>
+    </div>
     </div>
 
     <script src="../../Public/js/scripts.js"></script>

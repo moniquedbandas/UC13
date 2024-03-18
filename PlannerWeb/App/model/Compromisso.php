@@ -10,8 +10,9 @@ class Compromisso
     protected $idUsuario;
     protected $idUsuarioLogado;
 
-    public function __construct($dataComp, $hora, $descricao)
+    public function __construct($idCompromisso, $dataComp, $hora, $descricao)
     {
+        $this->idCompromisso = $idCompromisso;
         $this->dataComp = $dataComp;
         $this->hora = $hora;
         $this->descricao = $descricao;

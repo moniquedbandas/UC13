@@ -6,6 +6,12 @@ document
     let hora = document.getElementById("hora").value;
     let descricao = document.getElementById("descricao").value;
 
+    if (document.activeElement.value == "ADICIONAR") {
+      if (data == "" || hora == "" || descricao == "") {
+        alert("Preencha os dados do compromisso corretamente");
+        return false;
+      }
+    }
     // Cria uma nova linha na tabela com os valores capturados
     let table = document.getElementById("tabelaCompromissos");
     if (table.rows.length >= 7) {
@@ -46,6 +52,25 @@ function validarFormulario() {
   } else if (document.activeElement.value == "SIGN UP") {
     document.getElementById("form").action =
       "./App/controller/ProcessarUsuario.php?op=criarTela";
+  }
+  return true;
+}
+
+function acoesCompromisso() {
+  var dataCompromisso = document.getElementById("data").value;
+  var hora = document.getElementById("hora").value;
+  var descricao = document.getElementById("descricao").value;
+
+  if (document.activeElement.value == "SALVAR") {
+    if (dataCompromisso == "" || hora == "" || descricao == "") {
+      alert("Preencha todos os campos do compromisso.");
+      return false;
+    }
+    document.getElementById("formComp").action =
+      "./App/controller/ProcessarCompromisso.php?oc=salvarCompromisso";
+  } else if (document.activeElement.value == "LISTAR") {
+    document.getElementById("formComp").action =
+      "./App/controller/ProcessarCompromisso.php?oc=listarTela";
   }
   return true;
 }

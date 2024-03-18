@@ -13,12 +13,18 @@
 
 <body>
     <?php
-    switch ($_REQUEST['op']) {
-        case "adicionarCompromisso":
-            adicionar();
+
+    echo "OPCAO: " . $_REQUEST['oc'];
+    echo "<br>";
+    switch ($_REQUEST['oc']) {
+        case "cadastrarCompromisso":
+            cadastrar();
             break;
         case "alterarCompromisso":
             alterar();
+            break;
+        case "listarTela"; //feito        
+            listarTela();
             break;
         case "listarCompromisso":
             listar();
@@ -27,14 +33,27 @@
             deletar();
             break;
         default:
-            echo "Erro no processamento das requisições.";
+            echo "Erro no processamento das requisições de compromisso..";
     }
 
+    function cadastrar()
+    {
+        $dataComp = $_POST["data"];
+        $hora = $_POST["hora"];
+        $descricao = $_POST["descricao"];
+        include 'CompromissoController.php';
+        $contr = new CompromissoController();
+        $contr->cadastrarCompromisso($dataComp, $hora, $descricao);
+    }
     function adicionar()
     {
     }
     function alterar()
     {
+    }
+    function listarTela()
+    {
+        echo "<script>location.href='../view/PaginaListarCompromisso.php';</script>";
     }
     function listar()
     {
