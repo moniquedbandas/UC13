@@ -1,4 +1,4 @@
-<!-- pagina de login sera direcionada para ca se o usuario ja tiver cadastro! -->
+<!-- pagina de login sera direcionada para ca se o usuario ja tiver cadastro ou se tiver realizado o cadastro com sucesso! -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 

@@ -5,8 +5,8 @@ body {
 
 .container {
   background-color: #73626e;
-  margin: 100px 400px;
-  padding: 30px;
+  margin: 50px 300px;
+  padding: 20px 80px 80px 80px; /* top, right, bottom, left */
   border-radius: 20px;
   height: 40rem;
   opacity: 0.6;
@@ -28,16 +28,17 @@ body {
   border: 5px solid;
   border-radius: 20px;
   border-color: #f0b49e;
-  margin: 1.5rem 16rem;
+  margin: 1rem 19rem;
   width: 25rem;
-  height: 25rem;
-  padding: 3.125rem;
+  height: 33rem;
+  padding: 3rem;
 }
 .boas-vindas,
 .tituloContainer {
   color: #f7e4be;
   text-align: center;
-  padding: 1.25rem;
+  /* padding: 20px; */
+  margin-top: 0;
 }
 .labels {
   position: relative;
@@ -51,6 +52,14 @@ body {
 .areaBotoes {
   text-align: center;
   padding: 2.5rem;
+}
+.areaTabela {
+  overflow: auto;
+  height: 500px; /* Ajuste a altura conforme necessário */
+}
+#tabelaCompromissos {
+  width: 90%;
+  border-spacing: 10px;
 }
 table {
   border-collapse: collapse;
