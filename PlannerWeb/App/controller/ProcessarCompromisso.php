@@ -25,9 +25,6 @@
         case "listarTela"; //feito        
             listarTela();
             break;
-        case "listarCompromisso":
-            listar();
-            break;
         case "deletarCompromisso":
             deletar();
             break;
@@ -49,9 +46,6 @@
             echo "<script>location.href='../view/PaginaAtividades.php';</script>";
         }
     }
-    function adicionar()
-    {
-    }
     function alterar()
     {
     }
@@ -59,9 +53,7 @@
     {
         echo "<script>location.href='../view/PaginaListarCompromisso.php';</script>";
     }
-    function listar()
-    {
-    }
+
     function deletar()
     {
     }

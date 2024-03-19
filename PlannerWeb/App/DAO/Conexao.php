@@ -5,8 +5,8 @@ class Conexao
     private $host = 'localhost:3306';
     private $db_name = 'plannerweb';
     private $username = 'root';
-    private $password = 'root';
-    // private $password = ''; //pc senac
+    // private $password = 'root';
+    private $password = ''; //pc senac
     public $conn;
 
     public function fazConexao()

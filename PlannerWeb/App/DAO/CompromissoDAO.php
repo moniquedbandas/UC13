@@ -27,8 +27,16 @@ class CompromissoDAO
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        $sql = "SELECT * FROM compromisso ORDER BY idCompromisso";
-        return $conex->conn->query($sql);
+        var_dump($_SESSION['usuario_id']);
+        if (isset($_SESSION['usuario_id'])) {
+            $sql = "SELECT * FROM compromisso WHERE idUsuario= :idUsuario ORDER BY idCompromisso";
+            $query = $conex->conn->prepare($sql);
+            $query->bindParam("idUsuario", $_SESSION['usuario_id']);
+            $query->execute();
+            return $query;
+        } else {
+            return true;
+        }
     }
 
     public function alterarCompromisso(Compromisso $compromisso)
