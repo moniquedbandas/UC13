@@ -1,3 +1,4 @@
+let compromissos = [];
 document
   .getElementById("adicionarCompromisso")
   .addEventListener("click", function () {
@@ -6,18 +7,20 @@ document
     let hora = document.getElementById("hora").value;
     let descricao = document.getElementById("descricao").value;
 
-    if (document.activeElement.value == "ADICIONAR") {
-      if (data == "" || hora == "" || descricao == "") {
-        alert("Preencha os dados do compromisso corretamente");
-        return false;
-      }
+    if (data == "" || hora == "" || descricao == "") {
+      alert("Preencha os dados do compromisso corretamente");
+      return false;
     }
+
     // Cria uma nova linha na tabela com os valores capturados
     let table = document.getElementById("tabelaCompromissos");
     if (table.rows.length >= 7) {
       alert("voce atingiu o limite de compromissos gratuitos");
       return;
     }
+
+    compromissos.push({ dataComp: data, hora: hora, descricao: descricao });
+
     let newRow = table.insertRow(-1); // Insere a linha no final da tabela
 
     let cell1 = newRow.insertCell(0);
@@ -36,6 +39,12 @@ document.getElementById("limparTabela").addEventListener("click", function () {
   for (let i = 1; i < rowCount; i++) {
     table.deleteRow(1);
   }
+  compromissos = [];
+});
+
+document.getElementById("formComp").addEventListener("submit", function () {
+  let compromissosJson = JSON.stringify(compromissos);
+  document.getElementById("compromissos").value = compromissosJson;
 });
 
 function validarFormulario() {

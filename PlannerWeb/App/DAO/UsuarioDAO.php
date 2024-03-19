@@ -30,7 +30,7 @@ class UsuarioDAO
         $stmt->execute();
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($usuario && $senha == $usuario['senha']) {
-            return true;
+            return $usuario['idUsuario']; //autenticação foi bem sucedida, ai retorna o id do usuario que esta no banco de dados
         } else {
             return false;
         }

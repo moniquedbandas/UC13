@@ -14,6 +14,7 @@
 
 <body>
     <?php
+
     switch ($_REQUEST['op']) {
         case "criarTela":
             criarTela();
@@ -49,14 +50,15 @@
 
     function autenticar()
     {
+        session_start(); //starta a sessao para pegar o id do usuario logado
         if (!empty($_POST["username"]) && !empty($_POST["password"])) {
             $nomeUsuario = $_POST["username"];
             $senha = $_POST["password"];
-            var_dump($nomeUsuario);
-            var_dump($senha);
             include './UsuarioController.php';
             $contr = new UsuarioController();
-            if ($contr->autenticarUsuario($nomeUsuario, $senha)) {
+            $usuario_id = $contr->autenticarUsuario($nomeUsuario, $senha);
+            if ($usuario_id) { //se usuario e senha corretos, entra
+                $_SESSION['usuario_id'] = $usuario_id; //Isso armazena o ID do usuário durante toda a sessao
                 echo "<script>location.href='../view/PaginaAtividades.php';</script>";
             } else {
                 echo "<script>alert('Usuario ou senha incorretos');</script>";

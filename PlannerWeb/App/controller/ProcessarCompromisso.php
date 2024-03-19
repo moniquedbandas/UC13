@@ -13,11 +13,10 @@
 
 <body>
     <?php
-
     echo "OPCAO: " . $_REQUEST['oc'];
     echo "<br>";
     switch ($_REQUEST['oc']) {
-        case "cadastrarCompromisso":
+        case "cadastrarCompromisso": //feito
             cadastrar();
             break;
         case "alterarCompromisso":
@@ -38,12 +37,17 @@
 
     function cadastrar()
     {
-        $dataComp = $_POST["data"];
-        $hora = $_POST["hora"];
-        $descricao = $_POST["descricao"];
-        include 'CompromissoController.php';
-        $contr = new CompromissoController();
-        $contr->cadastrarCompromisso($dataComp, $hora, $descricao);
+        session_start(); //starta a sessao para conseguir pegar o id do usuario que esta logado.
+        $compromissos = json_decode($_POST['compromissos'], true);
+        foreach ($compromissos as $compromisso) {
+            $dataComp = $compromisso['dataComp'];
+            $hora = $compromisso['hora'];
+            $descricao = $compromisso['descricao'];
+            include_once 'CompromissoController.php';
+            $contr = new CompromissoController();
+            $contr->cadastrarCompromisso($dataComp, $hora, $descricao, $_SESSION['usuario_id']);
+            echo "<script>location.href='../view/PaginaAtividades.php';</script>";
+        }
     }
     function adicionar()
     {

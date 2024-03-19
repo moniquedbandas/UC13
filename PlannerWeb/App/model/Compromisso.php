@@ -8,14 +8,14 @@ class Compromisso
     protected $hora;
     protected $idCompromisso;
     protected $idUsuario;
-    protected $idUsuarioLogado;
 
-    public function __construct($idCompromisso, $dataComp, $hora, $descricao)
+    public function __construct($idCompromisso, $dataComp, $hora, $descricao, $idUsuario)
     {
         $this->idCompromisso = $idCompromisso;
         $this->dataComp = $dataComp;
         $this->hora = $hora;
         $this->descricao = $descricao;
+        $this->idUsuario = $idUsuario;
     }
 
     public function getDescricao()
@@ -66,16 +66,6 @@ class Compromisso
     public function setIdUsuario($value)
     {
         $this->idUsuario = $value;
-    }
-
-    public function getIdUsuarioLogado()
-    {
-        return $this->idUsuarioLogado;
-    }
-
-    public function setIdUsuarioLogado($value)
-    {
-        $this->idUsuarioLogado = $value;
     }
 
     public function cadastrarCompromisso(Compromisso $compromisso)
