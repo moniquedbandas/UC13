@@ -48,6 +48,15 @@
     }
     function alterar()
     {
+        echo "<script>location.href='../view/PaginaAlterarCompromisso.php';</script>";
+        $idCompromisso = $_POST['idCompromisso'];
+        $dataComp = $_POST['dataComp'];
+        $hora = $_POST['hora'];
+        $descricao = $_POST['descricao'];
+        include_once 'CompromissoController.php';
+        $contr = new CompromissoController();
+        $contr->alterarCompromisso($idCompromisso, $dataComp, $hora, $descricao);
+        echo 'Alterado com sucesso.';
     }
     function listarTela()
     {
@@ -56,6 +65,10 @@
 
     function deletar()
     {
+        $idCompromisso = $_REQUEST["idCompromisso"];
+        include_once 'CompromissoController.php';
+        $contr = new CompromissoController();
+        $contr->excluirCompromisso($idCompromisso);
     }
     ?>
 

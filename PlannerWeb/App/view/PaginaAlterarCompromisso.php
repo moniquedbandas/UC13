@@ -23,8 +23,8 @@
                 $res = CompromissoController::listarCompromisso();
                 $qtd = $res->rowCount();
                 ?>
-                <?php if ($qtd > 0) : ?>
-                    <table class='table table-hover table-striped table-bordered'>
+                <table class='table table-hover table-striped table-bordered'>
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Data</th>
@@ -32,29 +32,25 @@
                             <th>Descrição</th>
                             <th>Usuario</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <?php while ($row = $res->fetch(PDO::FETCH_OBJ)) : ?>
                             <tr>
-                                <td> <?= $row->idCompromisso ?> </td>
-                                <td> <?= $row->dataComp ?> </td>
-                                <td> <?= $row->hora ?> </td>
-                                <td> <?= $row->descricao ?> </td>
-                                <td> <?= $_SESSION['usuario_id'] ?> </td>
-                                <td>
-                                    <a href="../controller/ProcessarCompromisso.php?oc=alterarCompromisso&id=<?= $row->idCompromisso ?>">Editar</a>
-                                    <a href="../controller/ProcessarCompromisso.php?oc=deletarCompromisso&id=<?= $row->idCompromisso ?>">Deletar</a>
-                                </td>
+                                <td><?= $row->idCompromisso ?></td>
+                                <td><input type="text" name="dataComp[]" value="<?= $row->dataComp ?>"></td>
+                                <td><input type="text" name="hora[]" value="<?= $row->hora ?>"></td>
+                                <td><input type="text" name="descricao[]" value="<?= $row->descricao ?>"></td>
+                                <td><?= $_SESSION['usuario_id'] ?></td>
                             </tr>
                         <?php endwhile; ?>
-                    </table>
-                <?php else : ?>
-                    <p>Nenhum compromisso encontrado!</p>
-                <?php endif; ?>
+                    </tbody>
+                </table>
             </div>
             <input type="hidden" id="oc" name="oc">
             <div class="areaBotoes">
-                <!-- <input type="submit" name="listagem" value="LISTAGEM" id="listagem"> acho que nao precisa disso, pq quando sai da pagina atividades, ele ja lista tudo -->
                 <!-- <input type="submit" name="editar" value="EDITAR" onclick="document.getElementById('oc').value='alterarCompromisso'">
                 <input type="submit" name="deletar" value="DELETAR" onclick="document.getElementById('oc').value='deletarCompromisso'"> -->
+                <input type="button" value="OK">
             </div>
         </form>
     </div>
