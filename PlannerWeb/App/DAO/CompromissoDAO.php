@@ -38,12 +38,22 @@ class CompromissoDAO
             return true;
         }
     }
+    public function resgataPorID($idCompromisso)
+    {
+        $conex = new Conexao();
+        $conex->fazConexao();
+        $sql = "SELECT * FROM compromisso WHERE idCompromisso = :idCompromisso";
+        $stmt = $conex->conn->prepare($sql);
+        $stmt->bindValue(':idCompromisso', $idCompromisso);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 
     public function alterarCompromisso(Compromisso $compromisso)
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        $sql = "UPDATE compromisso SET dataComp = :datacomp, hora = :hora, descricao = :descricao WHERE idCompromisso = :idCompromisso";
+        $sql = "UPDATE compromisso SET dataComp = :dataComp, hora = :hora, descricao = :descricao WHERE idCompromisso = :idCompromisso";
         $stmt = $conex->conn->prepare($sql);
         $stmt->bindValue(':idCompromisso', $compromisso->getIdCompromisso());
         $stmt->bindValue(':dataComp', $compromisso->getDataComp());
@@ -55,18 +65,18 @@ class CompromissoDAO
         } else {
             echo "<script>alert('Erro: Sem sucesso ao alterar');</script>";
         }
+        echo "<script>location.href='../controller/ProcessarCompromisso.php?oc=listarTela';</script>";
     }
 
     public function excluirCompromisso($idCompromisso)
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        $sql = "DELETE FROM compromisso WHERE idCompromisso = '$idCompromisso'";
-        $res = $conex->conn->query($sql);
-        if ($res) {
-            echo "<script>alert('Compromisso deletado com sucesso');</script>";
-        } else {
-            echo "<script>alert('Erro: Sem sucesso ao deletar');</script>";
-        }
+        $sql = "DELETE FROM compromisso WHERE idCompromisso = :idCompromisso";
+        $stmt = $conex->conn->prepare($sql);
+        $stmt->bindParam(':idCompromisso', $idCompromisso, PDO::PARAM_INT);
+        $res = $stmt->execute();
+
+        return $res;
     }
 }

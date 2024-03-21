@@ -13,8 +13,6 @@
 
 <body>
     <?php
-    echo "OPCAO: " . $_REQUEST['oc'];
-    echo "<br>";
     switch ($_REQUEST['oc']) {
         case "cadastrarCompromisso": //feito
             cadastrar();
@@ -22,8 +20,11 @@
         case "alterarCompromisso":
             alterar();
             break;
-        case "listarTela"; //feito        
+        case "listarTela": //feito        
             listarTela();
+            break;
+        case "telaAlterarCompromisso": //feito
+            telaAlterar();
             break;
         case "deletarCompromisso":
             deletar();
@@ -46,29 +47,46 @@
             echo "<script>location.href='../view/PaginaAtividades.php';</script>";
         }
     }
-    function alterar()
-    {
-        echo "<script>location.href='../view/PaginaAlterarCompromisso.php';</script>";
-        $idCompromisso = $_POST['idCompromisso'];
-        $dataComp = $_POST['dataComp'];
-        $hora = $_POST['hora'];
-        $descricao = $_POST['descricao'];
-        include_once 'CompromissoController.php';
-        $contr = new CompromissoController();
-        $contr->alterarCompromisso($idCompromisso, $dataComp, $hora, $descricao);
-        echo 'Alterado com sucesso.';
-    }
     function listarTela()
     {
         echo "<script>location.href='../view/PaginaListarCompromisso.php';</script>";
     }
+    function telaAlterar()
+    {
+        // echo "<script>location.href='../view/PaginaListarCompromisso.php';</script>";
+        echo "<script>location.href='../view/PaginaAlterarCompromisso.php';</script>";
+    }
+    function alterar()
+    {
+        session_start();
+        if (isset($_GET['idCompromisso'])) {
+            $idCompromisso = $_GET['idCompromisso'];
+            $dataComp = $_POST['dataComp'];
+            $hora = $_POST['hora'];
+            $descricao = $_POST['descricao'];
+            $idUsuario = $_SESSION['usuario_id'];
+            include_once 'CompromissoController.php';
+            $contr = new CompromissoController();
+            $contr->alterarCompromisso($idCompromisso, $dataComp, $hora, $descricao, $idUsuario);
+            echo 'Compromisso alterado com sucesso.';
+        } else {
+            echo 'Erro: ID do compromisso não fornecido.';
+        }
+    }
+
+
 
     function deletar()
     {
-        $idCompromisso = $_REQUEST["idCompromisso"];
-        include_once 'CompromissoController.php';
-        $contr = new CompromissoController();
-        $contr->excluirCompromisso($idCompromisso);
+        if (isset($_GET['idCompromisso'])) {
+            $idCompromisso = $_GET['idCompromisso'];
+            include_once 'CompromissoController.php';
+            $controller = new CompromissoController();
+            $controller->excluirCompromisso($idCompromisso);
+            echo "<script>location.href='../view/PaginaListarCompromisso.php';</script>";
+        } else {
+            echo 'Erro: ID do compromisso não fornecido.';
+        }
     }
     ?>
 

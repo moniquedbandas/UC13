@@ -80,16 +80,22 @@ class Compromisso
         $dao = new CompromissoDAO();
         return $dao->listarCompromisso();
     }
+    public function resgataPorID($idCompromisso)
+    {
+        include '../DAO/CompromissoDAO.php';
+        $model = new CompromissoDAO(null);
+        return $model->resgataPorID($idCompromisso);
+    }
     public function alterarCompromisso(Compromisso $compromisso)
     {
         include_once "../DAO/CompromissoDAO.php";
-        $compromisso = new CompromissoDAO();
-        $compromisso->alterarCompromisso($this);
+        $compromissoDAO = new CompromissoDAO();
+        $compromissoDAO->alterarCompromisso($compromisso);
     }
     public function excluirCompromisso($idCompromisso)
     {
         include_once "../DAO/CompromissoDAO.php";
         $compromisso = new CompromissoDAO();
-        $compromisso->alterarCompromisso($idCompromisso);
+        $compromisso->excluirCompromisso($idCompromisso);
     }
 }

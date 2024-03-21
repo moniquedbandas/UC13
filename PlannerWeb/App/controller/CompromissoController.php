@@ -15,8 +15,13 @@ class CompromissoController
         $compromissoDAO = new Compromisso(null, null, null, null, null);
         return $compromissoDAO->listarCompromisso();
     }
-
-    public static function alterarCompromisso($idCompromisso, $dataComp, $hora, $descricao)
+    public static function resgataPorID($idCompromisso)
+    {
+        include '../model/Compromisso.php';
+        $model = new Compromisso(null, null, null, null, null, null, null);
+        return $model->resgataPorID($idCompromisso);
+    }
+    public static function alterarCompromisso($idCompromisso, $dataComp, $hora, $descricao, $idUsuario)
     {
         include_once '../model/Compromisso.php';
         $compromisso = new Compromisso($idCompromisso, $dataComp, $hora, $descricao, $idUsuario);

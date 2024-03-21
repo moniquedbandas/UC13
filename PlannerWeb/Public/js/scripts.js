@@ -80,6 +80,17 @@ function acoesCompromisso() {
   } else if (document.activeElement.value == "LISTAR") {
     document.getElementById("formComp").action =
       "./App/controller/ProcessarCompromisso.php?oc=listarTela";
+    // } else if (document.activeElement.value == "EDITAR") {
+    //   document.getElementById("formComp").action =
+    //     "./App/controller/ProcessarCompromisso.php?oc=alterarCompromisso";
+  } else if (document.activeElement.value == "DELETAR") {
+    document.getElementById("formComp").action =
+      "./App/controller/ProcessarCompromisso.php?oc=deletarCompromisso";
   }
   return true;
+}
+function editarCompromisso(idCompromisso) {
+  document.getElementById("formComp").action =
+    "../view/PaginaAlterarCompromisso.php?idCompromisso=" + idCompromisso;
+  document.getElementById("formComp").submit();
 }

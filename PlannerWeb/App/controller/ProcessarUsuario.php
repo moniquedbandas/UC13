@@ -41,7 +41,7 @@
             include './UsuarioController.php';
             $contr = new UsuarioController();
             $contr->cadastrarUsuario($nomeUsuario, $senha);
-            echo "<script>location.href='../view/PaginaAtividades.php';</script>";
+            echo "<script>location.href='../../index.html';</script>";
         } else {
             echo "<script>alert('Preencha todos os campos');</script>";
             echo "<script>location.href='../view/PaginaCadUsuario.php';</script>";

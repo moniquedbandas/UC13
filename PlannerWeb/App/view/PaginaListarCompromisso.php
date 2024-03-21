@@ -14,16 +14,15 @@
 
 <body>
     <div class="container">
-        <h3 class="tituloContainer">Área de compromissos</h3>
+        <h3 class="tituloContainer">Área de Listagem</h3>
         <form id="formComp" action="../../App/controller/ProcessarCompromisso.php" method="post">
             <div class="areaTabela">
                 <?php
-                session_start(); //starta a sessao para capturar o codigo
+                session_start();
                 include("../controller/CompromissoController.php");
                 $res = CompromissoController::listarCompromisso();
-                $qtd = $res->rowCount();
+                if ($res !== true) {
                 ?>
-                <?php if ($qtd > 0) : ?>
                     <table class='table table-hover table-striped table-bordered'>
                         <tr>
                             <th>#</th>
@@ -40,26 +39,24 @@
                                 <td> <?= $row->descricao ?> </td>
                                 <td> <?= $_SESSION['usuario_id'] ?> </td>
                                 <td>
-                                    <a href="../controller/ProcessarCompromisso.php?oc=alterarCompromisso&id=<?= $row->idCompromisso ?>">Editar</a>
-                                    <a href="../controller/ProcessarCompromisso.php?oc=deletarCompromisso&id=<?= $row->idCompromisso ?>">Deletar</a>
+                                    <!-- <a href="../view/PaginaAlterarCompromisso.php">Editar</a> -->
+                                    <a href="../view/PaginaAlterarCompromisso.php?idCompromisso=<?= $row->idCompromisso ?>">Editar</a>
+                                    <a href="../controller/ProcessarCompromisso.php?oc=deletarCompromisso&idCompromisso=<?= $row->idCompromisso ?>">Excluir</a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
                     </table>
-                <?php else : ?>
-                    <p>Nenhum compromisso encontrado!</p>
-                <?php endif; ?>
-            </div>
-            <input type="hidden" id="oc" name="oc">
-            <div class="areaBotoes">
-                <!-- <input type="submit" name="listagem" value="LISTAGEM" id="listagem"> acho que nao precisa disso, pq quando sai da pagina atividades, ele ja lista tudo -->
-                <!-- <input type="submit" name="editar" value="EDITAR" onclick="document.getElementById('oc').value='alterarCompromisso'">
-                <input type="submit" name="deletar" value="DELETAR" onclick="document.getElementById('oc').value='deletarCompromisso'"> -->
+                <?php
+                } else {
+                    echo "<p>Nenhum compromisso encontrado!</p>";
+                }
+                ?>
             </div>
         </form>
     </div>
 
     <script src="../../Public/js/scripts.js"></script>
+
 </body>
 
 </html>

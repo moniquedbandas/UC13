@@ -39,7 +39,6 @@
                     </table>
                 </div>
                 <input type="hidden" id="oc" name="oc">
-                <input type="hidden" id="compromissos" name="compromissos">
                 <div class="areaBotoes2">
                     <input type="submit" name="salvar" value="SALVAR" onclick="document.getElementById('oc').value='cadastrarCompromisso'">
                     <input type="submit" name="listar" value="LISTAR" onclick="document.getElementById('oc').value='listarTela'">
