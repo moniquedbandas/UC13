@@ -52,7 +52,6 @@
             </div>
         </form>
     </div>
-
     <script src="../../Public/js/scripts.js"></script>
 </body>
 

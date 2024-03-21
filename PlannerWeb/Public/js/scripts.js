@@ -94,3 +94,18 @@ function editarCompromisso(idCompromisso) {
     "../view/PaginaAlterarCompromisso.php?idCompromisso=" + idCompromisso;
   document.getElementById("formComp").submit();
 }
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const editarLinks = document.querySelectorAll(".editar-link");
+
+//   editarLinks.forEach(function (link) {
+//     link.addEventListener("click", function (event) {
+//       event.preventDefault(); // Impede o comportamento padrão do link
+
+//       const idCompromisso = this.getAttribute("data-id");
+//       document.getElementById("oc").value = "alterarCompromisso"; // Define a ação do formulário
+//       document.getElementById("idCompromisso").value = idCompromisso; // Define o ID do compromisso no formulário
+//       document.getElementById("formComp").submit(); // Submete o formulário
+//     });
+//   });
+// });

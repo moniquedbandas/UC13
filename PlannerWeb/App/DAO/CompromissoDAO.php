@@ -51,21 +51,33 @@ class CompromissoDAO
 
     public function alterarCompromisso(Compromisso $compromisso)
     {
-        $conex = new Conexao();
-        $conex->fazConexao();
-        $sql = "UPDATE compromisso SET dataComp = :dataComp, hora = :hora, descricao = :descricao WHERE idCompromisso = :idCompromisso";
-        $stmt = $conex->conn->prepare($sql);
-        $stmt->bindValue(':idCompromisso', $compromisso->getIdCompromisso());
-        $stmt->bindValue(':dataComp', $compromisso->getDataComp());
-        $stmt->bindValue(':hora', $compromisso->getHora());
-        $stmt->bindValue(':descricao', $compromisso->getDescricao());
-        $res = $stmt->execute();
-        if ($res) {
-            echo "<script>alert('Compromisso alterado com sucesso');</script>";
-        } else {
-            echo "<script>alert('Erro: Sem sucesso ao alterar');</script>";
+        try {
+            $conex = new Conexao();
+            $conex->fazConexao();
+
+            $conex->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "UPDATE compromisso SET dataComp = :dataComp, hora = :hora, descricao = :descricao WHERE idCompromisso = :idCompromisso";
+            $stmt = $conex->conn->prepare($sql);
+
+            if (!$stmt) {
+                throw new Exception("Erro na preparação da consulta.");
+            }
+
+            $stmt->bindValue(':idCompromisso', $compromisso->getIdCompromisso());
+            $stmt->bindValue(':dataComp', $compromisso->getDataComp());
+            $stmt->bindValue(':hora', $compromisso->getHora());
+            $stmt->bindValue(':descricao', $compromisso->getDescricao());
+
+            $res = $stmt->execute();
+            if ($res === false) {
+                throw new Exception("Erro ao executar a consulta.");
+            }
+            echo "<script>location.href='../controller/ProcessarCompromisso.php?oc=listarTela';</script>";
+        } catch (Exception $e) {
+            echo "Erro: " . $e->getMessage();
+            return false;
         }
-        echo "<script>location.href='../controller/ProcessarCompromisso.php?oc=listarTela';</script>";
     }
 
     public function excluirCompromisso($idCompromisso)
