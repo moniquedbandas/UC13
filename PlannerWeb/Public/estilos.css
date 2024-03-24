@@ -105,6 +105,22 @@ p {
   color: #f7e4be;
 }
 
+.btListar {
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  outline: none;
+  cursor: pointer;
+  background-color: #f0b49e;
+}
+
+.btListar a {
+  text-decoration: none;
+  color: black;
+}
+.btListar:hover {
+  background-color: #b38184;
+}
 /* 
 .color1 { #413e4a }
 .color2 { #73626e }

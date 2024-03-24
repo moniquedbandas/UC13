@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<!-- starta a sessao para conseguir pegar o id do usuario que esta logado. COLOQUEI NO INICIO DO CODIGO PRA FUNCIONAR EM TODAS AS FUNÇÕES. -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -14,17 +16,17 @@
 <body>
     <?php
     switch ($_REQUEST['oc']) {
-        case "cadastrarCompromisso": //feito
+        case "cadastrarCompromisso":
             cadastrar();
+            break;
+        case "listarTela":
+            listarTela();
+            break;
+        case "telaAlterarCompromisso":
+            telaAlterar();
             break;
         case "alterarCompromisso":
             alterar();
-            break;
-        case "listarTela": //feito        
-            listarTela();
-            break;
-        case "telaAlterarCompromisso": //feito
-            telaAlterar();
             break;
         case "deletarCompromisso":
             deletar();
@@ -35,32 +37,31 @@
 
     function cadastrar()
     {
-        session_start(); //starta a sessao para conseguir pegar o id do usuario que esta logado.
         $compromissos = json_decode($_POST['compromissos'], true);
         foreach ($compromissos as $compromisso) {
             $dataComp = $compromisso['dataComp'];
             $hora = $compromisso['hora'];
             $descricao = $compromisso['descricao'];
+            $idUsuario = $_SESSION['usuario_id'];
             include_once 'CompromissoController.php';
             $contr = new CompromissoController();
-            $contr->cadastrarCompromisso($dataComp, $hora, $descricao, $_SESSION['usuario_id']);
+            $contr->cadastrarCompromisso($dataComp, $hora, $descricao, $idUsuario);
             echo "<script>location.href='../view/PaginaAtividades.php';</script>";
         }
     }
+
     function listarTela()
     {
         echo "<script>location.href='../view/PaginaListarCompromisso.php';</script>";
     }
     function telaAlterar()
     {
-        // echo "<script>location.href='../view/PaginaListarCompromisso.php';</script>";
         echo "<script>location.href='../view/PaginaAlterarCompromisso.php';</script>";
     }
     function alterar()
     {
-        session_start();
-        if (isset($_GET['idCompromisso'])) {
-            $idCompromisso = $_GET['idCompromisso'];
+        if (isset($_REQUEST["idCompromisso"])) {
+            $idCompromisso = $_REQUEST['idCompromisso'];
             $dataComp = $_POST['dataComp'];
             $hora = $_POST['hora'];
             $descricao = $_POST['descricao'];
@@ -73,8 +74,6 @@
             echo 'Erro: ID do compromisso não fornecido.';
         }
     }
-
-
 
     function deletar()
     {

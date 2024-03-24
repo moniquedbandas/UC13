@@ -76,36 +76,16 @@ function acoesCompromisso() {
       return false;
     }
     document.getElementById("formComp").action =
-      "./App/controller/ProcessarCompromisso.php?oc=salvarCompromisso";
+      "./App/controller/ProcessarCompromisso.php?oc=cadastrarCompromisso";
   } else if (document.activeElement.value == "LISTAR") {
     document.getElementById("formComp").action =
       "./App/controller/ProcessarCompromisso.php?oc=listarTela";
-    // } else if (document.activeElement.value == "EDITAR") {
-    //   document.getElementById("formComp").action =
-    //     "./App/controller/ProcessarCompromisso.php?oc=alterarCompromisso";
+  } else if (document.activeElement.value == "EDITAR") {
+    document.getElementById("formComp").action =
+      "./App/controller/ProcessarCompromisso.php?oc=alterarCompromisso?idCompromisso";
   } else if (document.activeElement.value == "DELETAR") {
     document.getElementById("formComp").action =
       "./App/controller/ProcessarCompromisso.php?oc=deletarCompromisso";
   }
   return true;
 }
-function editarCompromisso(idCompromisso) {
-  document.getElementById("formComp").action =
-    "../view/PaginaAlterarCompromisso.php?idCompromisso=" + idCompromisso;
-  document.getElementById("formComp").submit();
-}
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const editarLinks = document.querySelectorAll(".editar-link");
-
-//   editarLinks.forEach(function (link) {
-//     link.addEventListener("click", function (event) {
-//       event.preventDefault(); // Impede o comportamento padrão do link
-
-//       const idCompromisso = this.getAttribute("data-id");
-//       document.getElementById("oc").value = "alterarCompromisso"; // Define a ação do formulário
-//       document.getElementById("idCompromisso").value = idCompromisso; // Define o ID do compromisso no formulário
-//       document.getElementById("formComp").submit(); // Submete o formulário
-//     });
-//   });
-// });

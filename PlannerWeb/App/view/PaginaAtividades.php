@@ -38,6 +38,7 @@
                         </tr>
                     </table>
                 </div>
+                <input type="hidden" id="compromissos" name="compromissos">
                 <input type="hidden" id="oc" name="oc">
                 <div class="areaBotoes2">
                     <input type="submit" name="salvar" value="SALVAR" onclick="document.getElementById('oc').value='cadastrarCompromisso'">

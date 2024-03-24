@@ -1,4 +1,5 @@
 <!-- se usuario nao tiver cadastro, sera direcionado para cá -->
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -14,7 +15,6 @@
 
 <body>
     <?php
-
     switch ($_REQUEST['op']) {
         case "criarTela":
             criarTela();
@@ -50,7 +50,6 @@
 
     function autenticar()
     {
-        session_start(); //starta a sessao para pegar o id do usuario logado
         if (!empty($_POST["username"]) && !empty($_POST["password"])) {
             $nomeUsuario = $_POST["username"];
             $senha = $_POST["password"];

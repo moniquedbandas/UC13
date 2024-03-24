@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -11,48 +12,48 @@
     <link rel="stylesheet" href="../../Public/estilos.css">
 </head>
 
-<body>
-    <div class="container">
-        <h3 class="tituloContainer">Área de edição.</h3>
-        <form id="formComp" action="../../App/controller/ProcessarCompromisso.php" method="post">
-            <div class="areaTabela">
+<div class="container">
+    <h3 class="tituloContainer">Área de edição.</h3>
+    <form id="formComp" action="../../App/controller/ProcessarCompromisso.php" method="post">
+        <div class="areaTabela">
+            <table class='table table-hover table-striped table-bordered'>
+                <tr>
+                    <th>#</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Descrição</th>
+                    <th>Usuário</th>
+                    <th>Ação</th>
+                </tr>
                 <?php
-                session_start(); // Inicia a sessão para capturar o código do usuário
                 include("../controller/CompromissoController.php");
-                $res = CompromissoController::listarCompromisso();
-                $qtd = $res->rowCount();
+                $res = CompromissoController::resgataPorID($_REQUEST["idCompromisso"]);
+                if ($res) {
+                    $row = $res;
                 ?>
-                <table class='table table-hover table-striped table-bordered'>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Data</th>
-                            <th>Hora</th>
-                            <th>Descrição</th>
-                            <th>Usuário</th>
-                            <th>Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($row = $res->fetch(PDO::FETCH_OBJ)) : ?>
-                            <tr>
-                                <td><input type="text" name="idCompromisso" value="<?= $row->idCompromisso ?>"></td>
-                                <td><input type="text" name="dataComp" value="<?= $row->dataComp ?>"></td>
-                                <td><input type="text" name="hora" value="<?= $row->hora ?>"></td>
-                                <td><input type="text" name="descricao" value="<?= $row->descricao ?>"></td>
-                                <td><?= $_SESSION['usuario_id'] ?></td>
-                                <td>
-                                    <input type="hidden" id="oc" name="oc">
-                                    <a href="../controller/ProcessarCompromisso.php?oc=alterarCompromisso&idCompromisso=<?= $row->idCompromisso ?>">Editar</a>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
-        </form>
-    </div>
-    <script src="../../Public/js/scripts.js"></script>
+                    <?php var_dump($row->dataComp, $row->hora, $row->descricao); ?>
+                    <tr>
+                        <td><?= $res->idCompromisso ?></td>
+                        <td><input type="text" name="dataComp" value="<?= $row->dataComp ?>"></td>
+                        <td><input type="text" name="hora" value="<?= $row->hora ?>"></td>
+                        <td><input type="text" name="descricao" value="<?= $row->descricao ?>"></td>
+                        <td><?= $_SESSION['usuario_id'] ?></td>
+                        <td>
+                            <input type="hidden" name="idCompromisso" value="<?= $row->idCompromisso ?>">
+                            <input type="hidden" name="oc" value="alterarCompromisso">
+                            <input type="submit" value="EDITAR">
+                        </td>
+                    </tr>
+                <?php
+                } else {
+                    echo "<tr><td colspan='6'>Nenhum compromisso encontrado.</td></tr>";
+                }
+                ?>
+            </table>
+        </div>
+    </form>
+</div>
+<script src="../../Public/js/scripts.js"></script>
 </body>
 
 </html>
