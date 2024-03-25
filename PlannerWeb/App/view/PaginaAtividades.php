@@ -15,7 +15,8 @@
 <body>
     <div class="container">
         <div class="areaTitulo">
-            <a href="/index.html">
+            <!-- <a href="/index.html">  -->
+            <a href="../../index.html">
                 <div class="sair"></div>
             </a>
             <h3 class="tituloContainer">Cadastro de compromissos</h3>
