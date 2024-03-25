@@ -8,15 +8,26 @@ body {
   margin: 50px 300px;
   padding: 20px 80px 80px 80px; /* top, right, bottom, left */
   border-radius: 20px;
-  height: 40rem;
+  height: 50rem;
   opacity: 0.6;
+}
+
+.sair {
+  position: absolute;
+  top: 90px;
+  left: 25rem;
+  width: 30px;
+  height: 30px;
+  background: url("../Public/images/planner.png") top left;
+  background-size: cover;
+  z-index: 1000;
 }
 
 .telaLogin {
   border: 5px solid;
   border-radius: 20px;
   border-color: #f0b49e;
-  margin: 3.125rem 25rem;
+  margin: 10rem 31rem;
   width: 12.5rem;
   /* height: 15rem; */
   padding: 3.125rem;
@@ -28,16 +39,16 @@ body {
   border: 5px solid;
   border-radius: 20px;
   border-color: #f0b49e;
-  margin: 1rem 19rem;
-  width: 25rem;
-  height: 33rem;
+  margin: 0 25rem;
+  width: 26rem;
+  height: 39rem;
   padding: 3rem;
 }
 .boas-vindas,
 .tituloContainer {
   color: #f7e4be;
   text-align: center;
-  /* padding: 20px; */
+  padding: 20px;
   margin-top: 0;
 }
 .labels {
@@ -96,7 +107,6 @@ input[type="submit"] {
   border: none;
   cursor: pointer;
   background-color: #f0b49e;
-  opacity: 0.8;
 }
 
 label[for="username"],

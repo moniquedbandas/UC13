@@ -13,7 +13,12 @@
 </head>
 
 <div class="container">
-    <h3 class="tituloContainer">Área de edição.</h3>
+    <div class="areaTitulo">
+        <a href="./PaginaListarCompromisso.php">
+            <div class="sair"></div>
+        </a>
+        <h3 class="tituloContainer">Área de edição.</h3>
+    </div>
     <form id="formComp" action="../../App/controller/ProcessarCompromisso.php" method="post">
         <div class="areaTabela">
             <table class='table table-hover table-striped table-bordered'>
@@ -31,7 +36,6 @@
                 if ($res) {
                     $row = $res;
                 ?>
-                    <?php var_dump($row->dataComp, $row->hora, $row->descricao); ?>
                     <tr>
                         <td><?= $res->idCompromisso ?></td>
                         <td><input type="text" name="dataComp" value="<?= $row->dataComp ?>"></td>

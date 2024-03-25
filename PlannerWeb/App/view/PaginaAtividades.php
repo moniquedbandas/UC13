@@ -14,7 +14,12 @@
 
 <body>
     <div class="container">
-        <h3 class="tituloContainer">Cadastro de compromissos</h3>
+        <div class="areaTitulo">
+            <a href="/index.html">
+                <div class="sair"></div>
+            </a>
+            <h3 class="tituloContainer">Cadastro de compromissos</h3>
+        </div>
         <form id="formComp" action="../../App/controller/ProcessarCompromisso.php" method="post">
             <div class="areaCadastro">
                 <div class="labels">
@@ -26,8 +31,8 @@
                     <input type="text" name="descricao" id="descricao"><br>
                 </div>
                 <div class="areaBotoes">
-                    <input type="button" name="limpar" value="LIMPAR" id="limparTabela">
-                    <input type="button" name="add" value="ADICIONAR" id="adicionarCompromisso">
+                    <input type="button" name="limpar" value="LIMPAR" id="limparTabela" class="btListar">
+                    <input type="button" name="add" value="ADICIONAR" id="adicionarCompromisso" class="btListar">
                 </div>
                 <div class="areaTabela">
                     <table id="tabelaCompromissos">
@@ -46,7 +51,6 @@
                 </div>
         </form>
     </div>
-
     <script src="../../Public/js/scripts.js"></script>
 </body>
 

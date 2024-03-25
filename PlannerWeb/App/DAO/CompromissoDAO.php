@@ -27,7 +27,6 @@ class CompromissoDAO
     {
         $conex = new Conexao();
         $conex->fazConexao();
-        var_dump($_SESSION['usuario_id']);
         if (isset($_SESSION['usuario_id'])) {
             $sql = "SELECT * FROM compromisso WHERE idUsuario= :idUsuario ORDER BY idCompromisso";
             $query = $conex->conn->prepare($sql);

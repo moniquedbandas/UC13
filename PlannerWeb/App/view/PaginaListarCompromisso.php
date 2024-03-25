@@ -1,5 +1,6 @@
 <!-- paginaAtividades direciona para cá quando clicar no botão LISTAR! -->
-<?php session_start(); ?>
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -15,7 +16,12 @@
 
 <body>
     <div class="container">
-        <h3 class="tituloContainer">Área de Listagem</h3>
+        <div class="areaTitulo">
+            <a href="./PaginaAtividades.php">
+                <div class="sair"></div>
+            </a>
+            <h3 class="tituloContainer">Área de Listagem</h3>
+        </div>
         <form id="formComp" action="../../App/controller/ProcessarCompromisso.php" method="post">
             <div class="areaTabela">
                 <table class='table table-hover table-striped table-bordered'>
